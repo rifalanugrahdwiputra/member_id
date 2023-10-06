@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
-
 import '../controllers/topics_controller.dart';
 
 class TopicsView extends GetView<TopicsController> {
@@ -9,86 +8,158 @@ class TopicsView extends GetView<TopicsController> {
 
   @override
   Widget build(BuildContext context) {
+    return const TopicsViewPage();
+  }
+}
+
+class TopicsViewPage extends StatefulWidget {
+  const TopicsViewPage({super.key});
+
+  @override
+  State<TopicsViewPage> createState() => _TopicsViewPageState();
+}
+
+class _TopicsViewPageState extends State<TopicsViewPage> {
+  TopicsController controller = TopicsController();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
-              children: [
-                Card(
-                  elevation: 5,
-                  color: AppColors.whiteColor,
-                  shadowColor: AppColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Obx(
-                      () => Form(
-                        key: controller.key,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        child: Column(
+      appBar: AppBar(
+        leading: Padding(
+          padding: EdgeInsets.only(left: 20.0),
+          child: InkWell(
+            onTap: () => Get.back(),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              size: 20.0,
+            ),
+          ),
+        ),
+        title: const Text(
+          "Topics",
+          style: TextStyle(
+              color: AppColors.whiteColor,
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
+      backgroundColor: AppColors.primaryColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: const [
+              Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      color: AppColors.cardColor,
+                      elevation: 10.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Login".toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 12.0,
-                                fontFamily: 'Quicksand',
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.blackColor,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20.0,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.text,
+                              "Pollitics",
                               style: TextStyle(
-                                fontSize: 12.0,
-                                fontFamily: 'Quicksand',
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blackColor.withOpacity(0.8),
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor,
                               ),
-                              decoration: InputDecoration(
-                                hintText: 'Masukan Username',
-                                hintStyle: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.blackColor.withOpacity(0.6),
-                                  fontFamily: 'Quicksand',
-                                ),
-                                filled: true,
-                                fillColor: AppColors.primaryColor,
-                                border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0),
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.circular(5.0), // Radius 5px
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(5.0), // Radius 5px
-                                  borderSide: const BorderSide(
-                                    width: 2.0,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                ),
-                              ),
+                            ),
+                            Icon(
+                              Icons.play_arrow,
+                              color: AppColors.whiteColor,
+                              size: 20.0,
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      color: AppColors.cardColor,
+                      elevation: 10.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Animals",
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                            Icon(
+                              Icons.play_arrow,
+                              color: AppColors.whiteColor,
+                              size: 20.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      color: AppColors.cardColor,
+                      elevation: 10.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Gk",
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                            Icon(
+                              Icons.play_arrow,
+                              color: AppColors.whiteColor,
+                              size: 20.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

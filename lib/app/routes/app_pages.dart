@@ -13,7 +13,7 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.oneScreen,
+      name: _Paths.topics,
       page: () => const TopicsView(),
       binding: TopicsBinding(),
     ),
