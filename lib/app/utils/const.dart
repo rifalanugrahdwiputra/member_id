@@ -1,0 +1,17 @@
+const String userEmail = "USER_EMAIL";
+const String userPassword = "USER_PASSWORD";
+const String appName = "E-Survey";
+const String wargaName = "Name";
+const String titleActivityMaps = "MapsActivity";
+const String inCompleteForm = "Success";
+const String choosePicture = "Choose Picture";
+const String showCameraFailed = "Failed to bring up the camera";
+const String switchCameraButton = "Switch Camera Button";
+const String captureTheImageButton = "Capture the Image Button";
+const String takePictureFailed = "Failed to take picture";
+const String cameraX = "Camera";
+const String upload = "Upload";
+const String gagal = "Gagal!";
+const String error = "Terjadi kesalahan";
+const String berhasil = "Berhasil!";
+const String info = "Informasi";
