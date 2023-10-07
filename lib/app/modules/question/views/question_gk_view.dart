@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/routes/app_pages.dart';
@@ -23,8 +25,7 @@ class QuestionGkViewPage extends StatefulWidget {
 
 class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
   QuestionController controller = QuestionController();
-  int countdown = 10;
-  late Future<void> timerFuture;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -32,9 +33,19 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
     startTimer();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+  }
+
   void startTimer() {
-    timerFuture = Future.delayed(Duration(seconds: countdown), () {
-      navigateToNextPage();
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        setState(() {
+          navigateToNextPage();
+        });
+      }
     });
   }
 
@@ -44,8 +55,9 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
         setState(() {
           controller.questions3.text = "Skipped";
           controller.box.write(LocalStorage.questions3, "Skipped");
+          _timer?.cancel();
         });
-        Get.toNamed(Routes.results);
+        Get.offAllNamed(Routes.results);
       } else {
         setState(() {
           controller.questions3.text = "Skipped";
@@ -175,9 +187,10 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                           controller.questions3.text = "January";
                           controller.box
                               .write(LocalStorage.questions3, "January");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsGk) == true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionAnimalTwo);
                       },
                       child: Padding(
@@ -211,9 +224,10 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                           controller.questions3.text = "February";
                           controller.box
                               .write(LocalStorage.questions3, "February");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsGk) == true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionAnimalTwo);
                       },
                       child: Padding(
@@ -247,9 +261,10 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                           controller.questions3.text = "March";
                           controller.box
                               .write(LocalStorage.questions3, "March");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsGk) == true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionAnimalTwo);
                       },
                       child: Padding(
@@ -282,9 +297,10 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                         setState(() {
                           controller.questions3.text = "June";
                           controller.box.write(LocalStorage.questions3, "June");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsGk) == true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionAnimalTwo);
                       },
                       child: Padding(

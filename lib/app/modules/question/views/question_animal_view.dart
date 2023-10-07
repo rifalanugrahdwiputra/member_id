@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/utils/app_colors.dart';
@@ -23,8 +25,7 @@ class QuestionAnimalViewPage extends StatefulWidget {
 
 class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
   QuestionController controller = QuestionController();
-  int countdown = 10;
-  late Future<void> timerFuture;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -32,9 +33,19 @@ class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
     startTimer();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+  }
+
   void startTimer() {
-    timerFuture = Future.delayed(Duration(seconds: countdown), () {
-      navigateToNextPage();
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        setState(() {
+          navigateToNextPage();
+        });
+      }
     });
   }
 
@@ -44,6 +55,7 @@ class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
         setState(() {
           controller.questions1.text = "Skipped";
           controller.box.write(LocalStorage.questions1, "Skipped");
+          _timer?.cancel();
         });
         Get.toNamed(Routes.questionAnimalTwo);
       } else {
@@ -171,6 +183,7 @@ class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
                         setState(() {
                           controller.questions1.text = "Lion";
                           controller.box.write(LocalStorage.questions1, "Lion");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
@@ -207,6 +220,7 @@ class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
                         setState(() {
                           controller.questions1.text = "Cat";
                           controller.box.write(LocalStorage.questions1, "Cat");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
@@ -244,6 +258,7 @@ class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
                           controller.questions1.text = "Tiger";
                           controller.box
                               .write(LocalStorage.questions1, "Tiger");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
@@ -280,6 +295,7 @@ class _QuestionAnimalViewPageState extends State<QuestionAnimalViewPage> {
                         setState(() {
                           controller.questions1.text = "Wolf";
                           controller.box.write(LocalStorage.questions1, "Wolf");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:share/share.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/local_storage.dart';
@@ -165,29 +166,37 @@ class _ResultsViewPageState extends State<ResultsViewPage> {
                 backgroundColor: AppColors.percentDisableColor,
               ),
               const SizedBox(height: 30.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: AppColors.blueAccentColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15.0,
-                    ),
-                    child: Text(
-                      "Share your score",
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () => Share.share(
+                        'Yeay, \n Saya telah mendapatkan hasil benar ${controller.trueCount.value} dari ${controller.questionsCount.value} soal, \n ayo ikutan keseruannya bareng saya, \n dengan aplikasi ini :)'),
+                    child: const Card(
+                      color: AppColors.blueAccentColor,
+                      elevation: 10.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 15.0,
+                          horizontal: 20.0,
+                        ),
+                        child: Text(
+                          "Share your score",
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.whiteColor,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
               const SizedBox(height: 15.0),
               const Text(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/routes/app_pages.dart';
@@ -24,9 +26,7 @@ class QuestionPoliticsViewPage extends StatefulWidget {
 
 class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
   QuestionController controller = QuestionController();
-
-  int countdown = 10;
-  late Future<void> timerFuture;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -34,9 +34,19 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
     startTimer();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+  }
+
   void startTimer() {
-    timerFuture = Future.delayed(Duration(seconds: countdown), () {
-      navigateToNextPage();
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        setState(() {
+          navigateToNextPage();
+        });
+      }
     });
   }
 
@@ -46,6 +56,7 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
         setState(() {
           controller.questions2.text = "Skipped";
           controller.box.write(LocalStorage.questions2, "Skipped");
+          _timer?.cancel();
         });
         Get.toNamed(Routes.questionPoliticsTwo);
       } else {
@@ -173,6 +184,7 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                         setState(() {
                           controller.questions2.text = "Pdip";
                           controller.box.write(LocalStorage.questions2, "Pdip");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
@@ -210,6 +222,7 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                           controller.questions2.text = "Nasdem";
                           controller.box
                               .write(LocalStorage.questions2, "Nasdem");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
@@ -247,6 +260,7 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                           controller.questions2.text = "Golkar";
                           controller.box
                               .write(LocalStorage.questions2, "Golkar");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
@@ -284,6 +298,7 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                           controller.questions2.text = "Perindo";
                           controller.box
                               .write(LocalStorage.questions2, "Perindo");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true

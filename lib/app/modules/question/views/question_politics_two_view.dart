@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/routes/app_pages.dart';
@@ -25,8 +27,7 @@ class QuestionPoliticsTwoViewPage extends StatefulWidget {
 class _QuestionPoliticsTwoViewPageState
     extends State<QuestionPoliticsTwoViewPage> {
   QuestionController controller = QuestionController();
-  int countdown = 10;
-  late Future<void> timerFuture;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -34,9 +35,19 @@ class _QuestionPoliticsTwoViewPageState
     startTimer();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+  }
+
   void startTimer() {
-    timerFuture = Future.delayed(Duration(seconds: countdown), () {
-      navigateToNextPage();
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        setState(() {
+          navigateToNextPage();
+        });
+      }
     });
   }
 
@@ -46,8 +57,9 @@ class _QuestionPoliticsTwoViewPageState
         setState(() {
           controller.questions5.text = "Skipped";
           controller.box.write(LocalStorage.questions5, "Skipped");
+          _timer?.cancel();
         });
-        Get.toNamed(Routes.results);
+        Get.offAllNamed(Routes.results);
       } else {
         setState(() {
           controller.questions5.text = "Skipped";
@@ -173,10 +185,11 @@ class _QuestionPoliticsTwoViewPageState
                         setState(() {
                           controller.questions5.text = "Pdip";
                           controller.box.write(LocalStorage.questions5, "Pdip");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.offAllNamed(Routes.results);
                       },
                       child: Padding(
@@ -210,10 +223,11 @@ class _QuestionPoliticsTwoViewPageState
                           controller.questions5.text = "Nasdem";
                           controller.box
                               .write(LocalStorage.questions5, "Nasdem");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.offAllNamed(Routes.results);
                       },
                       child: Padding(
@@ -247,10 +261,11 @@ class _QuestionPoliticsTwoViewPageState
                           controller.questions5.text = "Glokar";
                           controller.box
                               .write(LocalStorage.questions5, "Golkar");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.offAllNamed(Routes.results);
                       },
                       child: Padding(
@@ -284,10 +299,11 @@ class _QuestionPoliticsTwoViewPageState
                           controller.questions5.text = "Perindo";
                           controller.box
                               .write(LocalStorage.questions5, "Perindo");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsPolitik) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.offAllNamed(Routes.results);
                       },
                       child: Padding(

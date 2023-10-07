@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/utils/app_colors.dart';
@@ -24,8 +26,7 @@ class QuestionAnimalTwoViewPage extends StatefulWidget {
 
 class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
   QuestionController controller = QuestionController();
-  int countdown = 10;
-  late Future<void> timerFuture;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -33,9 +34,19 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
     startTimer();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+  }
+
   void startTimer() {
-    timerFuture = Future.delayed(Duration(seconds: countdown), () {
-      navigateToNextPage();
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        setState(() {
+          navigateToNextPage();
+        });
+      }
     });
   }
 
@@ -45,8 +56,9 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
         setState(() {
           controller.questions4.text = "Skipped";
           controller.box.write(LocalStorage.questions4, "Skipped");
+          _timer?.cancel();
         });
-        Get.toNamed(Routes.results);
+        Get.offAllNamed(Routes.results);
       } else {
         setState(() {
           controller.questions4.text = "Skipped";
@@ -172,10 +184,11 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                         setState(() {
                           controller.questions4.text = "Lion";
                           controller.box.write(LocalStorage.questions4, "Lion");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionPoliticsTwo);
                       },
                       child: Padding(
@@ -209,10 +222,11 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                           controller.questions4.text = "Cheeta";
                           controller.box
                               .write(LocalStorage.questions4, "Cheeta");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionPoliticsTwo);
                       },
                       child: Padding(
@@ -246,10 +260,11 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                           controller.questions4.text = "Tiger";
                           controller.box
                               .write(LocalStorage.questions4, "Tiger");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionPoliticsTwo);
                       },
                       child: Padding(
@@ -282,10 +297,11 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                         setState(() {
                           controller.questions4.text = "Wolf";
                           controller.box.write(LocalStorage.questions4, "Wolf");
+                          _timer?.cancel();
                         });
                         controller.box.read(LocalStorage.questionsAnimal) ==
                                 true
-                            ? Get.toNamed(Routes.results)
+                            ? Get.offAllNamed(Routes.results)
                             : Get.toNamed(Routes.questionPoliticsTwo);
                       },
                       child: Padding(
