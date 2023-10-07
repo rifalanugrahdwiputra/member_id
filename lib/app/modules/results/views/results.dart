@@ -1,5 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -41,6 +42,7 @@ class _ResultsViewPageState extends State<ResultsViewPage> {
     controller.questions5.text =
         controller.box.read(LocalStorage.questions5) ?? "";
     calculatedQuestion();
+    addDataToFirestore();
   }
 
   calculatedQuestion() {
@@ -94,6 +96,18 @@ class _ResultsViewPageState extends State<ResultsViewPage> {
         controller.questionsCount.value++;
       }
     }
+  }
+
+  void addDataToFirestore() {
+    FirebaseFirestore.instance.collection('results').add({
+      'correct': controller.trueCount.value,
+      'wrong': (controller.questionsCount.value - controller.trueCount.value),
+      'updatedAt': FieldValue.serverTimestamp(),
+    }).then((value) {
+      print("Data berhasil ditambahkan ke Firestore.");
+    }).catchError((error) {
+      print("Terjadi kesalahan: $error");
+    });
   }
 
   @override
