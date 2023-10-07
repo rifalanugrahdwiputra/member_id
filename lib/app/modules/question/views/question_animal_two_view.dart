@@ -24,6 +24,38 @@ class QuestionAnimalTwoViewPage extends StatefulWidget {
 
 class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
   QuestionController controller = QuestionController();
+  int countdown = 10;
+  late Future<void> timerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    timerFuture = Future.delayed(Duration(seconds: countdown), () {
+      navigateToNextPage();
+    });
+  }
+
+  void navigateToNextPage() {
+    setState(() {
+      if (controller.box.read(LocalStorage.questionsAnimal) == true) {
+        setState(() {
+          controller.questions4.text = "Skipped";
+          controller.box.write(LocalStorage.questions4, "Skipped");
+        });
+        Get.toNamed(Routes.results);
+      } else {
+        setState(() {
+          controller.questions4.text = "Skipped";
+          controller.box.write(LocalStorage.questions4, "Skipped");
+        });
+        Get.toNamed(Routes.questionPoliticsTwo);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

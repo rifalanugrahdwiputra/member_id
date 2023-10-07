@@ -23,10 +23,37 @@ class QuestionGkViewPage extends StatefulWidget {
 
 class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
   QuestionController controller = QuestionController();
+  int countdown = 10;
+  late Future<void> timerFuture;
 
   @override
   void initState() {
     super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    timerFuture = Future.delayed(Duration(seconds: countdown), () {
+      navigateToNextPage();
+    });
+  }
+
+  void navigateToNextPage() {
+    setState(() {
+      if (controller.box.read(LocalStorage.questionsGk) == true) {
+        setState(() {
+          controller.questions3.text = "Skipped";
+          controller.box.write(LocalStorage.questions3, "Skipped");
+        });
+        Get.toNamed(Routes.results);
+      } else {
+        setState(() {
+          controller.questions3.text = "Skipped";
+          controller.box.write(LocalStorage.questions3, "Skipped");
+        });
+        Get.toNamed(Routes.questionAnimalTwo);
+      }
+    });
   }
 
   @override

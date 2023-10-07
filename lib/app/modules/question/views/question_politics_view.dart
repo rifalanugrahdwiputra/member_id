@@ -25,9 +25,37 @@ class QuestionPoliticsViewPage extends StatefulWidget {
 class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
   QuestionController controller = QuestionController();
 
+  int countdown = 10;
+  late Future<void> timerFuture;
+
   @override
   void initState() {
     super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    timerFuture = Future.delayed(Duration(seconds: countdown), () {
+      navigateToNextPage();
+    });
+  }
+
+  void navigateToNextPage() {
+    setState(() {
+      if (controller.box.read(LocalStorage.questionsPolitik) == true) {
+        setState(() {
+          controller.questions2.text = "Skipped";
+          controller.box.write(LocalStorage.questions2, "Skipped");
+        });
+        Get.toNamed(Routes.questionPoliticsTwo);
+      } else {
+        setState(() {
+          controller.questions2.text = "Skipped";
+          controller.box.write(LocalStorage.questions2, "Skipped");
+        });
+        Get.toNamed(Routes.questionGk);
+      }
+    });
   }
 
   @override
