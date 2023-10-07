@@ -15,3 +15,5 @@ Saya menggunakan clean code<br>
 5. routes ( untuk pengaturan page dan juga contorller (Routingnya))<br>
 6. utils ( didalam folder ini ada local storage dan juga color resources )<br>
 7. code utama ada di Main.dart
+<br>
+![](assets/images/overview.png)
