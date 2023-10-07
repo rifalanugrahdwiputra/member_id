@@ -171,7 +171,7 @@ class _ResultsViewPageState extends State<ResultsViewPage> {
                 children: [
                   InkWell(
                     onTap: () => Share.share(
-                        'Yeay, \n Saya telah mendapatkan hasil benar ${controller.trueCount.value} dari ${controller.questionsCount.value} soal, \n ayo ikutan keseruannya bareng saya, \n dengan aplikasi ini :)'),
+                        'Yeay, \nSaya telah mendapatkan hasil benar ${controller.trueCount.value} dari ${controller.questionsCount.value} soal, \nayo ikutan keseruannya bareng saya, \ndengan aplikasi ini :)'),
                     child: const Card(
                       color: AppColors.blueAccentColor,
                       elevation: 10.0,
