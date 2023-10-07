@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/app_colors.dart';
-import '../controllers/topics_controller.dart';
+import '../controllers/results_controller.dart';
 
-class TopicsView extends GetView<TopicsController> {
-  const TopicsView({Key? key}) : super(key: key);
+class ResultsView extends GetView<ResultsController> {
+  const ResultsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const TopicsViewPage();
+    return const ResultsViewPage();
   }
 }
 
-class TopicsViewPage extends StatefulWidget {
-  const TopicsViewPage({super.key});
+class ResultsViewPage extends StatefulWidget {
+  const ResultsViewPage({super.key});
 
   @override
-  State<TopicsViewPage> createState() => _TopicsViewPageState();
+  State<ResultsViewPage> createState() => _ResultsViewPageState();
 }
 
-class _TopicsViewPageState extends State<TopicsViewPage> {
-  TopicsController controller = TopicsController();
+class _ResultsViewPageState extends State<ResultsViewPage> {
+  ResultsController controller = ResultsController();
 
   @override
   Widget build(BuildContext context) {

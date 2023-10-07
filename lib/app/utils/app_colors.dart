@@ -7,6 +7,7 @@ class AppColors {
   static const Color primaryColor = Color(0xFF18284C);
   static const Color cardColor = Color(0xFF1E3364);
   static const Color indicatorColor = Color(0xFFF7D18E);
+  static const Color disableIndicatorColor = Color(0xFF2E486A);
   static const Color starColor = Color(0xFFF8D956);
   static const Color shareColor = Color(0xFF4694E8);
 
