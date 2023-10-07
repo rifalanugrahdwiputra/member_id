@@ -10,6 +10,10 @@ class AppColors {
   static const Color disableIndicatorColor = Color(0xFF2E486A);
   static const Color starColor = Color(0xFFF8D956);
   static const Color shareColor = Color(0xFF4694E8);
+  static const Color percentEnableColor = Color(0xFF90C388);
+  static const Color percentDisableColor = Color(0xFFD67976);
+  static const Color trueQuestionColor = Color(0xFF547E63);
+  static const Color falseQuestionColor = Color(0xFFB64741);
 
   static const Map<int, Color> colorMap = {
     50: Color(0xFF18284C),

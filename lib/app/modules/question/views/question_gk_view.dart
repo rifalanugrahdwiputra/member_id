@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/routes/app_pages.dart';
 import 'package:member_id/app/utils/app_colors.dart';
+import '../../../utils/local_storage.dart';
 import '../controllers/question_controller.dart';
 
 class QuestionGkView extends GetView<QuestionController> {
@@ -55,7 +56,17 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
             child: Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: InkWell(
-                onTap: () => Get.offAllNamed(Routes.home),
+                onTap: () {
+                  Get.offAllNamed(Routes.home);
+                  controller.box.remove(LocalStorage.questions1);
+                  controller.box.remove(LocalStorage.questions2);
+                  controller.box.remove(LocalStorage.questions3);
+                  controller.box.remove(LocalStorage.questions4);
+                  controller.box.remove(LocalStorage.questions5);
+                  controller.box.remove(LocalStorage.questionsPolitik);
+                  controller.box.remove(LocalStorage.questionsAnimal);
+                  controller.box.remove(LocalStorage.questionsGk);
+                },
                 child: const Text(
                   "Exit",
                   style: TextStyle(
@@ -132,7 +143,16 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions3.text = "January";
+                          controller.box
+                              .write(LocalStorage.questions3, "January");
+                        });
+                        controller.box.read(LocalStorage.questionsGk) == true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionAnimalTwo);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
@@ -160,7 +180,14 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                         ),
                       ),
                       onPressed: () {
-                        Get.toNamed(Routes.questionAnimalTwo);
+                        setState(() {
+                          controller.questions3.text = "February";
+                          controller.box
+                              .write(LocalStorage.questions3, "February");
+                        });
+                        controller.box.read(LocalStorage.questionsGk) == true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionAnimalTwo);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
@@ -188,7 +215,16 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions3.text = "March";
+                          controller.box
+                              .write(LocalStorage.questions3, "March");
+                        });
+                        controller.box.read(LocalStorage.questionsGk) == true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionAnimalTwo);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
@@ -215,7 +251,15 @@ class _QuestionGkViewPageState extends State<QuestionGkViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions3.text = "June";
+                          controller.box.write(LocalStorage.questions3, "June");
+                        });
+                        controller.box.read(LocalStorage.questionsGk) == true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionAnimalTwo);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(

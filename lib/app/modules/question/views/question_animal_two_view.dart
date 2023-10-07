@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/utils/app_colors.dart';
 import '../../../routes/app_pages.dart';
+import '../../../utils/local_storage.dart';
 import '../controllers/question_controller.dart';
 
 class QuestionAnimalTwoView extends GetView<QuestionController> {
@@ -51,7 +52,17 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
             child: Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: InkWell(
-                onTap: () => Get.offAllNamed(Routes.home),
+                onTap: () {
+                  Get.offAllNamed(Routes.home);
+                  controller.box.remove(LocalStorage.questions1);
+                  controller.box.remove(LocalStorage.questions2);
+                  controller.box.remove(LocalStorage.questions3);
+                  controller.box.remove(LocalStorage.questions4);
+                  controller.box.remove(LocalStorage.questions5);
+                  controller.box.remove(LocalStorage.questionsPolitik);
+                  controller.box.remove(LocalStorage.questionsAnimal);
+                  controller.box.remove(LocalStorage.questionsGk);
+                },
                 child: const Text(
                   "Exit",
                   style: TextStyle(
@@ -125,7 +136,16 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions4.text = "Lion";
+                          controller.box.write(LocalStorage.questions4, "Lion");
+                        });
+                        controller.box.read(LocalStorage.questionsAnimal) ==
+                                true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionPoliticsTwo);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
@@ -154,8 +174,14 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                       ),
                       onPressed: () {
                         setState(() {
-                          Get.toNamed(Routes.questionPoliticsTwo);
+                          controller.questions4.text = "Cheeta";
+                          controller.box
+                              .write(LocalStorage.questions4, "Cheeta");
                         });
+                        controller.box.read(LocalStorage.questionsAnimal) ==
+                                true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionPoliticsTwo);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
@@ -183,7 +209,17 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions4.text = "Tiger";
+                          controller.box
+                              .write(LocalStorage.questions4, "Tiger");
+                        });
+                        controller.box.read(LocalStorage.questionsAnimal) ==
+                                true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionPoliticsTwo);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
@@ -210,7 +246,16 @@ class _QuestionAnimalTwoViewPageState extends State<QuestionAnimalTwoViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions4.text = "Wolf";
+                          controller.box.write(LocalStorage.questions4, "Wolf");
+                        });
+                        controller.box.read(LocalStorage.questionsAnimal) ==
+                                true
+                            ? Get.toNamed(Routes.results)
+                            : Get.toNamed(Routes.questionPoliticsTwo);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(

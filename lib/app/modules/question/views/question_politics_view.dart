@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/routes/app_pages.dart';
 import 'package:member_id/app/utils/app_colors.dart';
+import '../../../utils/local_storage.dart';
 import '../controllers/question_controller.dart';
 
 class QuestionPoliticsView extends GetView<QuestionController> {
@@ -56,7 +57,17 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
             child: Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: InkWell(
-                onTap: () => Get.offAllNamed(Routes.home),
+                onTap: () {
+                  Get.offAllNamed(Routes.home);
+                  controller.box.remove(LocalStorage.questions1);
+                  controller.box.remove(LocalStorage.questions2);
+                  controller.box.remove(LocalStorage.questions3);
+                  controller.box.remove(LocalStorage.questions4);
+                  controller.box.remove(LocalStorage.questions5);
+                  controller.box.remove(LocalStorage.questionsPolitik);
+                  controller.box.remove(LocalStorage.questionsAnimal);
+                  controller.box.remove(LocalStorage.questionsGk);
+                },
                 child: const Text(
                   "Exit",
                   style: TextStyle(
@@ -131,7 +142,14 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                         ),
                       ),
                       onPressed: () {
-                        Get.toNamed(Routes.questionGk);
+                        setState(() {
+                          controller.questions2.text = "Pdip";
+                          controller.box.write(LocalStorage.questions2, "Pdip");
+                        });
+                        controller.box.read(LocalStorage.questionsPolitik) ==
+                                true
+                            ? Get.toNamed(Routes.questionPoliticsTwo)
+                            : Get.toNamed(Routes.questionGk);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
@@ -159,7 +177,17 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions2.text = "Nasdem";
+                          controller.box
+                              .write(LocalStorage.questions2, "Nasdem");
+                        });
+                        controller.box.read(LocalStorage.questionsPolitik) ==
+                                true
+                            ? Get.toNamed(Routes.questionPoliticsTwo)
+                            : Get.toNamed(Routes.questionGk);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
@@ -186,7 +214,17 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions2.text = "Golkar";
+                          controller.box
+                              .write(LocalStorage.questions2, "Golkar");
+                        });
+                        controller.box.read(LocalStorage.questionsPolitik) ==
+                                true
+                            ? Get.toNamed(Routes.questionPoliticsTwo)
+                            : Get.toNamed(Routes.questionGk);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
@@ -213,7 +251,17 @@ class _QuestionPoliticsViewPageState extends State<QuestionPoliticsViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          controller.questions2.text = "Perindo";
+                          controller.box
+                              .write(LocalStorage.questions2, "Perindo");
+                        });
+                        controller.box.read(LocalStorage.questionsPolitik) ==
+                                true
+                            ? Get.toNamed(Routes.questionPoliticsTwo)
+                            : Get.toNamed(Routes.questionGk);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(

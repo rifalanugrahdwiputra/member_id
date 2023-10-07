@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:member_id/app/utils/app_colors.dart';
+import 'package:member_id/app/utils/local_storage.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -22,6 +23,19 @@ class HomeViewPage extends StatefulWidget {
 
 class _HomeViewPageState extends State<HomeViewPage> {
   HomeController controller = HomeController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.box.remove(LocalStorage.questions1);
+    controller.box.remove(LocalStorage.questions2);
+    controller.box.remove(LocalStorage.questions3);
+    controller.box.remove(LocalStorage.questions4);
+    controller.box.remove(LocalStorage.questions5);
+    controller.box.remove(LocalStorage.questionsPolitik);
+    controller.box.remove(LocalStorage.questionsAnimal);
+    controller.box.remove(LocalStorage.questionsGk);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +115,9 @@ class _HomeViewPageState extends State<HomeViewPage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.questionAnimal);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:member_id/app/utils/local_storage.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/app_colors.dart';
 import '../controllers/topics_controller.dart';
@@ -52,36 +53,43 @@ class _TopicsViewPageState extends State<TopicsViewPage> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: [
-              const Row(
+              Row(
                 children: [
                   Expanded(
-                    child: Card(
-                      color: AppColors.cardColor,
-                      elevation: 10.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.questionPolitics);
+                        controller.box
+                            .write(LocalStorage.questionsPolitik, true);
+                      },
+                      child: const Card(
+                        color: AppColors.cardColor,
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Pollitics",
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Pollitics",
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.whiteColor,
+                                ),
                               ),
-                            ),
-                            Icon(
-                              Icons.play_arrow,
-                              color: AppColors.whiteColor,
-                              size: 20.0,
-                            ),
-                          ],
+                              Icon(
+                                Icons.play_arrow,
+                                color: AppColors.whiteColor,
+                                size: 20.0,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -92,7 +100,11 @@ class _TopicsViewPageState extends State<TopicsViewPage> {
                 children: [
                   Expanded(
                     child: InkWell(
-                      onTap: () => Get.toNamed(Routes.questionAnimal),
+                      onTap: () {
+                        Get.toNamed(Routes.questionAnimal);
+                        controller.box
+                            .write(LocalStorage.questionsAnimal, true);
+                      },
                       child: const Card(
                         color: AppColors.cardColor,
                         elevation: 10.0,
@@ -127,36 +139,42 @@ class _TopicsViewPageState extends State<TopicsViewPage> {
                   ),
                 ],
               ),
-              const Row(
+              Row(
                 children: [
                   Expanded(
-                    child: Card(
-                      color: AppColors.cardColor,
-                      elevation: 10.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.questionGk);
+                        controller.box.write(LocalStorage.questionsGk, true);
+                      },
+                      child: const Card(
+                        color: AppColors.cardColor,
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Gk",
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Gk",
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.whiteColor,
+                                ),
                               ),
-                            ),
-                            Icon(
-                              Icons.play_arrow,
-                              color: AppColors.whiteColor,
-                              size: 20.0,
-                            ),
-                          ],
+                              Icon(
+                                Icons.play_arrow,
+                                color: AppColors.whiteColor,
+                                size: 20.0,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
