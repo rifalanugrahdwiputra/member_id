@@ -16,4 +16,7 @@ Saya menggunakan clean code<br>
 6. utils ( didalam folder ini ada local storage dan juga color resources )<br>
 7. code utama ada di Main.dart
 <br>
-<img src="https://i.ibb.co/NSpV2w8/overview.png" alt="overview" border="0" />
+<center>
+  <img src="https://i.ibb.co/NSpV2w8/overview.png" alt="overview" width="300 height="200"/>
+</center>
+
