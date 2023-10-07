@@ -17,6 +17,6 @@ Saya menggunakan clean code<br>
 7. code utama ada di Main.dart
 <br>
 <center>
-  <img src="https://i.ibb.co/NSpV2w8/overview.png" alt="overview" width="300 height="200"/>
+  <img src="https://i.ibb.co/NSpV2w8/overview.png" alt="overview" height="150"/>
 </center>
 
